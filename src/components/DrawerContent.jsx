@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 
 const DrawerContent = ({ navigation }) => {
   const navigateToScreen = (screenName) => {
@@ -8,6 +9,16 @@ const DrawerContent = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Text
+        style={{
+          fontSize: 44,
+          fontWeight: "bold",
+          marginBottom: 20,
+          color: "#f4511e",
+        }}
+      >
+        evmu
+      </Text>
       <TouchableOpacity
         style={styles.drawerItem}
         onPress={() => navigateToScreen("Home")}
@@ -19,6 +30,21 @@ const DrawerContent = ({ navigation }) => {
         onPress={() => navigateToScreen("Settings")}
       >
         <Text style={styles.drawerItemText}>Settings</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.drawerItem}
+        onPress={() => navigateToScreen("SifirBorc")}
+      >
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <FontAwesome
+            name="turkish-lira"
+            size={24}
+            style={{
+              marginRight: 10,
+            }}
+          />
+          <Text style={styles.drawerItemText}>Sıfır Borç</Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
