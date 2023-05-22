@@ -1,4 +1,12 @@
-import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
+import ZeroItem from "../components/ZeroItem";
 
 const SifirBorc = () => {
   const data = [
@@ -38,7 +46,6 @@ const SifirBorc = () => {
           style={{
             fontSize: 12,
             fontWeight: "bold",
-
             color: "gray",
           }}
         >
@@ -65,32 +72,8 @@ const SifirBorc = () => {
 
       <FlatList
         data={data}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={{
-              flexDirection: "row",
-              // justifyContent: "center",
-              alignItems: "center",
-              margin: 10,
-            }}
-          >
-            <Image
-              source={{ uri: item.imageUri }}
-              style={{ width: 100, height: 100 }}
-              resizeMode="contain"
-            />
-            <Text
-              style={{
-                fontSize: 12,
-                fontWeight: "bold",
-                color: "gray",
-                marginLeft: 10,
-              }}
-            >
-              {item.title}
-            </Text>
-          </TouchableOpacity>
-        )}
+        renderItem={({ item }) => <ZeroItem item={item} />}
+        keyExtractor={(item) => item.id}
       />
     </View>
   );
