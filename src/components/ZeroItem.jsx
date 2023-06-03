@@ -1,47 +1,31 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+} from "react-native";
 import React from "react";
 
-const ZeroItem = ({ item }) => {
+const ZeroItem = ({ item, navigation }) => {
   return (
-    <View
-      style={{
-        flex: 1,
-        marginVertical: 5,
-        marginHorizontal: 10,
-        borderRadius: 10,
-        backgroundColor: "white",
-        elevation: 2,
-        shadowColor: "gray",
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-      }}
-    >
+    <View style={styles.container}>
       <TouchableOpacity
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          padding: 10,
+        style={styles.touchView}
+        onPress={() => {
+          navigation.navigate("ProductDetail", { item: item });
         }}
       >
         <Image
           source={{ uri: item.imageUri }}
-          style={{ width: 100, height: 100 }}
+          style={styles.image}
           resizeMode="contain"
         />
-        <Text
-          style={{
-            fontSize: 12,
-            fontWeight: "bold",
-            color: "gray",
-            marginLeft: 10,
-          }}
-        >
-          {item.title}
-        </Text>
+        <Text style={styles.title}>{item.title}</Text>
+        <View style={styles.percentView}>
+          <Text style={styles.percentText}>%{item.donepercent}</Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -49,4 +33,50 @@ const ZeroItem = ({ item }) => {
 
 export default ZeroItem;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginVertical: 5,
+    marginHorizontal: 10,
+    borderRadius: 10,
+    backgroundColor: "white",
+    elevation: 2,
+    shadowColor: "gray",
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+  },
+
+  touchView: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+  },
+
+  image: {
+    width: Dimensions.get("window").width / 4.1,
+    height: Dimensions.get("window").width / 4.1,
+  },
+
+  title: {
+    fontSize: Dimensions.get("window").width / 28,
+    fontWeight: "bold",
+    color: "gray",
+    marginLeft: 10,
+  },
+
+  percentView: {
+    flex: 1,
+    alignItems: "flex-end",
+    marginRight: Dimensions.get("window").width / 40,
+  },
+
+  percentText: {
+    fontSize: Dimensions.get("window").width / 7,
+    fontWeight: "bold",
+    color: "#272829",
+  },
+});

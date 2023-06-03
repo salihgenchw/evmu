@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import ZeroItem from "../components/ZeroItem";
 
-const SifirBorc = () => {
+const SifirBorc = ({ navigation }) => {
   const data = [
     {
       id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -16,6 +16,7 @@ const SifirBorc = () => {
       price: 26300,
       imageUri:
         "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1653084303665",
+      donepercent: 96,
     },
     {
       id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
@@ -23,6 +24,7 @@ const SifirBorc = () => {
       price: 17200,
       imageUri:
         "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-11-pro-max-gold-select-2019?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1566954990059",
+      donepercent: 96,
     },
     {
       id: "58694a0f-3da1-471f-bd96-145571e29d72",
@@ -30,7 +32,16 @@ const SifirBorc = () => {
       price: 6700,
       imageUri:
         "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MKU83_VW_34FR+watch-40-alum-midnight-nc-se_VW_34FR_WF_CO_GEO_TR?wid=1400&hei=1400&trim=1%2C0&fmt=p-jpg&qlt=95&.v=1683237043713",
+      donepercent: 96,
     },
+    // {
+    //   id: "58694a0f-3da1-471f-bd96-145571e2922222",
+    //   title: "Apple Watch SE Uzun versiyonn test",
+    //   price: 6700,
+    //   imageUri:
+    //     "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MKU83_VW_34FR+watch-40-alum-midnight-nc-se_VW_34FR_WF_CO_GEO_TR?wid=1400&hei=1400&trim=1%2C0&fmt=p-jpg&qlt=95&.v=1683237043713",
+    //   donepercent: 91,
+    // },
   ];
 
   return (
@@ -61,7 +72,7 @@ const SifirBorc = () => {
       >
         <Text
           style={{
-            fontSize: 54,
+            fontSize: 60,
             fontWeight: "bold",
             color: "#f4511e",
           }}
@@ -72,7 +83,9 @@ const SifirBorc = () => {
 
       <FlatList
         data={data}
-        renderItem={({ item }) => <ZeroItem item={item} />}
+        renderItem={({ item }) => (
+          <ZeroItem item={item} navigation={navigation} />
+        )}
         keyExtractor={(item) => item.id}
       />
     </View>

@@ -5,10 +5,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import { Dimensions } from "react-native";
 
 import HomeScreen from "../screen/HomeScreen";
 import SettingsScreen from "../screen/SettingsScreen";
 import SifirBorc from "../screen/SifirBorc";
+import ProductDetailScreen from "../screen/ProductDetailScreen";
 
 import DrawerContent from "../components/DrawerContent";
 
@@ -48,7 +50,11 @@ const HomeStack = () => (
       options={{
         tabBarLabel: "Sıfır Borç",
         tabBarIcon: ({ color, size }) => (
-          <FontAwesome name="turkish-lira" size={24} color={color} />
+          <FontAwesome
+            name="turkish-lira"
+            size={Dimensions.get("window").width / 15}
+            color={color}
+          />
         ),
         tabBarActiveTintColor: "#f4511e",
         tabBarInactiveTintColor: "gray",
@@ -58,14 +64,21 @@ const HomeStack = () => (
 );
 
 const AppNavigation = () => (
-  <NavigationContainer>
-    <Drawer.Navigator
-      screenOptions={{ headerShown: false }}
-      drawerContent={(props) => <DrawerContent {...props} />}
-    >
-      <Drawer.Screen name="HomeStack" component={HomeStack} />
-    </Drawer.Navigator>
-  </NavigationContainer>
+  <>
+    <NavigationContainer>
+      <Drawer.Navigator
+        screenOptions={{ headerShown: false }}
+        drawerContent={(props) => <DrawerContent {...props} />}
+      >
+        <Drawer.Screen
+          name="HomeStack"
+          component={HomeStack}
+          screenOptions={{ headerShown: false }}
+        />
+        <Drawer.Screen name="ProductDetail" component={ProductDetailScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  </>
 );
 
 export default AppNavigation;
