@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
+    height: Dimensions.get("window").width / 3.5,
   },
 
   image: {
@@ -66,6 +67,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "gray",
     marginLeft: 10,
+    flex: 1,
   },
 
   percentView: {

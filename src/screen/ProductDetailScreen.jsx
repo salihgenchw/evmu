@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import { FlatList } from "react-native-gesture-handler";
 
 const ProductDetailScreen = ({ route, navigation }) => {
   const { item } = route.params;
+
+  // useEffect(() => {
+  //   console.log("locale", new Date().toLocaleDateString());
+  // }, []);
+
+  detailsData = [
+    {
+      id: 1,
+      payDate: "Mayıs '23",
+      payPrice: "1000",
+      payDesc: "Ödeme 1",
+    },
+    {
+      id: 2,
+      payDate: "Haziran '23",
+      payPrice: "1500",
+      payDesc: "Ödeme 2",
+    },
+  ];
 
   return (
     <>
@@ -63,46 +83,38 @@ const ProductDetailScreen = ({ route, navigation }) => {
         />
       </View>
 
-      {/* <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          backgroundColor: "darkgray",
-          width: Dimensions.get("window").width,
-          paddingHorizontal: 10,
-          paddingBottom: 10,
-          borderTopLeftRadius: 40,
-          borderTopRightRadius: 40,
-        }}
-      >
-        <View
-          style={{ flexDirection: "row", alignItems: "center", paddingTop: 10 }}
-        >
-          <FontAwesome
-            name="turkish-lira"
-            size={24}
-            style={{ marginRight: 10 }}
-          />
-          <Text style={{ fontSize: 24, fontWeight: "bold", color: "gray" }}>
-            {item.price}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            marginLeft: Dimensions.get("window").width / 2.5,
-          }}
-        >
-          <Text style={{ fontSize: 24, fontWeight: "bold", color: "gray" }}>
-            {item.donepercent}%
-          </Text>
-          <Text style={{ fontSize: 24, fontWeight: "bold", color: "gray" }}>
-            {" "}
-            indirim
-          </Text>
-        </View>
-      </View> */}
+      <FlatList
+        data={detailsData}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              backgroundColor: "white",
+              width: Dimensions.get("window").width,
+              padding: 10,
+              justifyContent: "space-between",
+              shadowColor: "gray",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 10,
+              // margin: 5,
+              marginVertical: 5,
+
+              elevation: 1,
+            }}
+          >
+            <Text style={{ fontSize: 24, color: "gray" }}>{item.payDate}</Text>
+            <Text style={{ fontSize: 24, color: "gray" }}>
+              {item.payPrice} ₺
+            </Text>
+          </View>
+        )}
+      />
     </>
   );
 };

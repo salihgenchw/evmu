@@ -1,6 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { Ionicons } from "@expo/vector-icons";
@@ -16,6 +17,7 @@ import DrawerContent from "../components/DrawerContent";
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
 const HomeStack = () => (
   <Tab.Navigator screenOptions={{ headerShown: false }}>
